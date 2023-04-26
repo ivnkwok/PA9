@@ -4,7 +4,7 @@ std::vector<std::vector<int>> fillBoard(Difficulty diff, std::vector<std::vector
     for (int i = 1; i <= diff.getSize(); i++) {
         for (int j = 1; j <= diff.getSize(); j++) {
             if (rand() % 7 == 0) {
-                placeMine(i, j, grid);
+                grid = placeMine(i, j, grid);
             }
             else {
                 grid[i][j] = 0;
@@ -42,6 +42,7 @@ std::vector<std::vector<int>> setDisplayBoard(Difficulty diff, std::vector<std::
 
 std::vector<std::vector<int>> placeMine(int x, int y, std::vector<std::vector<int>> grid) {
     grid[x][y] = 9;
+    return grid;
 }
 
 void playGame(Difficulty diff) {
