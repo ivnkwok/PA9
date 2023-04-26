@@ -4,7 +4,7 @@ std::vector<std::vector<int>> fillBoard(Difficulty diff, std::vector<std::vector
     for (int i = 1; i <= diff.getSize(); i++) {
         for (int j = 1; j <= diff.getSize(); j++) {
             if (rand() % 7 == 0) {
-                grid[i][j] = 9;
+                placeMine(i, j, grid);
             }
             else {
                 grid[i][j] = 0;
@@ -38,6 +38,10 @@ std::vector<std::vector<int>> setDisplayBoard(Difficulty diff, std::vector<std::
         }
     }
     return grid;
+}
+
+std::vector<std::vector<int>> placeMine(int x, int y, std::vector<std::vector<int>> grid) {
+    grid[x][y] = 9;
 }
 
 void playGame(Difficulty diff) {
@@ -74,7 +78,6 @@ void playGame(Difficulty diff) {
 
     difficultySprite.setTextureRect(IntRect(0, 0, w*3, w));
     difficultySprite.setPosition(diff.getWindowSize() - 128, 0);
-
     
     while (app.isOpen())
     {
@@ -146,19 +149,18 @@ void playGame(Difficulty diff) {
                 tileSprite.setTextureRect(IntRect(displayGrid[i][j] * w, 0, w, w));
                 tileSprite.setPosition(i * w - 32, j * w);
                 app.draw(tileSprite);
-                app.draw(difficultySprite);
+                
             }
         }
 
         //timer
-        if (!cleared) {
-            time = clock.getElapsedTime();
-        }
+        time = clock.getElapsedTime();
         char str[] = "";
         sprintf(str, "%d:%d", (int)time.asSeconds() / 60, (int)time.asSeconds() % 60);
         if (!cleared) {
             timerText.setString(str);
         }
+        app.draw(difficultySprite);
         app.draw(timerText);
         app.display();
     }

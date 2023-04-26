@@ -5,6 +5,9 @@ public:
 	int getSize();
 	int getBoardSize();
 	int getWindowSize();
+	int setSize(int size);
+	int setBoardSize(int size);
+	int setWindowSize(int size);
 protected:
 	int size;
 	int boardSize;

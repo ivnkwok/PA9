@@ -9,3 +9,4 @@
 std::vector<std::vector<int>> fillBoard(Difficulty diff, std::vector<std::vector<int>> grid);
 std::vector<std::vector<int>> setDisplayBoard(Difficulty diff, std::vector<std::vector<int>> grid);
 void playGame(Difficulty diff);
+std::vector<std::vector<int>> placeMine(int x, int y, std::vector<std::vector<int>> grid);
